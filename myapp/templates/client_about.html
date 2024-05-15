@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}
+{{ title }} - Информация о клиенте
+{% endblock %}
+{% block content %}
+<h2>Информация о клиенте: {{ client.name }}</h2>
+<table class="table table-striped">
+    <tr>
+        <td>Имя:</td>
+        <td>{{ client.name }}</td>
+        <td rowspan="6"><img src="{{ client.image.url }}" alt="Фото клиента" width="250" height="250"></td>
+    </tr>
+    <tr>
+        <td>Email:</td>
+        <td>{{ client.email }}</td>
+    </tr>
+    <tr>
+        <td>Телефон:</td>
+        <td>{{ client.phone }}</td>
+    </tr>
+    <tr>
+        <td>Адрес:</td>
+        <td>{{ client.address }}</td>
+    </tr>
+    <tr>
+        <td>Дата регистрации:</td>
+        <td>{{ client.reg_data }}</td>
+    </tr>
+    <tr>
+        <td><a href="{% url 'client_orders' client.id %}">Заказы клиента</a></td>
+    </tr>
+    <tr>
+        <td><a href="{% url 'clients_all' %}">Вернуться к списку клиентов</a></td>
+    </tr>
+</table>
+{% endblock %}

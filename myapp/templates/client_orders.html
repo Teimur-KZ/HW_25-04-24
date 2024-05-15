@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}
+{{ client.name }} - Интернет-магазин
+{% endblock %}
+{% block content %}
+<h2>Заказы за последнюю неделю: <b>{{client.name }}</b> </h2>
+<h3>Количество заказов: {{ products_by_time.count_orders_week }}</h3>
+<h3>Сумма заказов: {{ products_by_time.sum_orders_week }}</h3>
+<table class="table table-striped">
+<div class="container">
+    <div class="row">
+        {% for product in products_by_time.week %}
+            <div class="col-md-3">
+                <a href="{% url 'product_full' product.id %}">{{ product.name }}</a>
+            </div>
+            {% if forloop.counter|divisibleby:4 %}
+                </div><div class="row">
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+</table>
+<h2>Заказы за последний месяц: <b>{{client.name }}</b> </h2>
+<h3>Количество заказов: {{ products_by_time.count_orders_month }}</h3>
+<h3>Сумма заказов: {{ products_by_time.sum_orders_month }}</h3>
+<table class="table table-striped">
+<div class="container">
+    <div class="row">
+        {% for product in products_by_time.month %}
+            <div class="col-md-3">
+                <a href="{% url 'product_full' product.id %}">{{ product.name }}</a>
+            </div>
+            {% if forloop.counter|divisibleby:4 %}
+                </div><div class="row">
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+</table>
+<h2>Заказы за последний год: <b>{{client.name }}</b> </h2>
+<h3>Количество заказов: {{ products_by_time.count_orders_year }}</h3>
+<h3>Сумма заказов: {{ products_by_time.sum_orders_year }}</h3>
+<table class="table table-striped">
+<div class="container">
+    <div class="row">
+        {% for product in products_by_time.year %}
+            <div class="col-md-3">
+                <a href="{% url 'product_full' product.id %}">{{ product.name }}</a>
+            </div>
+            {% if forloop.counter|divisibleby:4 %}
+                </div><div class="row">
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+</table>
+{% endblock %}

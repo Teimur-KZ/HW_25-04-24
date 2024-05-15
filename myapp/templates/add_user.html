@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %} Сайт my_app4 {% endblock %}
+{% block content %}
+    <h2>Добавление нового клиента</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_div }}
+        <input type="submit" value="Отправить">
+
+    </form>
+    <a href="{% url 'clients_all' %}">Вернуться к списку клиентов</a>
+{% endblock %}

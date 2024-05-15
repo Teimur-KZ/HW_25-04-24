@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}
+{{ category_names_titles }} - Интернет-магазин
+{% endblock %}
+{% block content %}
+<h2>Товары в категории: {{ category_names_titles }}</h2>
+<style>
+    .product-card {
+        margin: 20px;
+    }
+    .product-card img {
+        width: 100%;
+        height: auto;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        {% for product in products %}
+            <div class="col-md-3 product-card">
+                <h3><a href="{% url 'product_info' product.id %}">{{ product.name }}</a></h3>
+                <p>Цена: {{ product.price }}</p>
+                <p>Количество: {{ product.quantity }}</p>
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                {% endif %}
+            </div>
+            {% if forloop.counter|divisibleby:4 %}
+                </div><div class="row">
+            {% endif %}
+        {% endfor %}
+    </div>
+    <tr>
+        <td><a href="javascript:history.back()">Назад</a></td>
+    </tr>
+</div>
+{% endblock %}

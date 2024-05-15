@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}
+{{ title }} - Интернет-магазин
+{% endblock %}
+{% block content %}
+<h2>Все категории товаров</h2>
+<style>
+    .client-card {
+        margin: 20px;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        {% for category in categories %}
+            <div class="col-md-3 client-card">
+                <h3><a href="{% url 'product_category' category %}" title="Карточка {{ category }}">{{ category }}</a></h3>
+
+            </div>
+            {% if forloop.counter|divisibleby:3 %}
+                </div><div class="row">
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
